@@ -1,0 +1,14 @@
+import 'package:flutter_marketplace_core/features/maps/custom_map.dart';
+import 'package:flutter_marketplace_core/features/maps/location_service.dart';
+
+// Display map with listings
+CustomMap(
+  listings: listings,
+  initialLocation: Location(lat: 40.7128, lng: -74.0060),
+  onLocationSelected: (location) {
+    print('Selected location: $location');
+  },
+);
+
+// Get current location
+final location = await LocationService.getCurrentLocation();
