@@ -1,0 +1,9 @@
+lib/
+├── features/
+│   ├── search/           # Search & filtering
+│   ├── maps/            # Map integration
+│   ├── payments/        # Payment processing
+│   └── admin_sync/      # Admin panel integration
+├── shared/
+│   └── pagination/      # Pagination utilities
+└── utils/               # Helper utilities
