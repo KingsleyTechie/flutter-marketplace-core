@@ -1,0 +1,21 @@
+State Management
+The package uses BLoC pattern for state management:
+SearchBloc: Manages search state and filtering
+PaymentBloc: Handles payment processing state
+MapBloc: Manages map interactions and markers
+SyncBloc: Handles admin synchronization
+
+Error Handling
+Comprehensive error handling with:
+Network error recovery
+Payment failure handling
+Location permission errors
+API error management
+User-friendly error messages
+
+Performance
+Lazy loading for images and data
+Efficient pagination
+Memory management
+Network request optimization
+Cache implementation
