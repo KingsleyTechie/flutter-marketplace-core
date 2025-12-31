@@ -1,0 +1,16 @@
+// Unit tests
+test('Search should filter products by price', () {
+  final search = SearchService();
+  final results = search.filterByPrice(products, 100, 500);
+  expect(results, everyElement((p) => p.price >= 100 && p.price <= 500));
+});
+
+// Widget tests
+testWidgets('PaymentWidget displays correctly', (tester) async {
+  await tester.pumpWidget(
+    MaterialApp(
+      home: PaymentWidget(amount: 100),
+    ),
+  );
+  expect(find.text('\$100.00'), findsOneWidget);
+});
