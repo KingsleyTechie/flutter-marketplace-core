@@ -1,0 +1,14 @@
+import 'package:flutter_marketplace_core/features/payments/payment_bloc.dart';
+import 'package:flutter_marketplace_core/features/payments/payment_widget.dart';
+
+// Process payment
+PaymentWidget(
+  amount: 299.99,
+  currency: 'USD',
+  onSuccess: (paymentId) {
+    print('Payment successful: $paymentId');
+  },
+  onError: (error) {
+    print('Payment failed: $error');
+  },
+);
