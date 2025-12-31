@@ -1,0 +1,57 @@
+name: flutter_marketplace_core
+description: Core marketplace features package for Flutter - Search, Maps, Payments, Admin Sync, and Pagination utilities.
+version: 1.0.0+1
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.2
+  equatable: ^2.0.5
+  dio: ^5.0.0
+  google_maps_flutter: ^2.4.0
+  geolocator: ^10.0.0
+  geocoding: ^2.1.0
+  flutter_stripe: ^9.0.0
+  uuid: ^4.0.0
+  cached_network_image: ^3.3.0
+  intl: ^0.19.0
+  shared_preferences: ^2.2.2
+  shimmer: ^3.0.0
+  pull_to_refresh: ^2.0.0
+  url_launcher: ^6.2.0
+  image_picker: ^1.0.0
+  permission_handler: ^11.0.0
+  connectivity_plus: ^5.0.0
+  flutter_local_notifications: ^16.0.0
+  firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.10
+  google_sign_in: ^6.1.5
+  facebook_login: ^5.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+  build_runner: ^2.4.6
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+    
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
