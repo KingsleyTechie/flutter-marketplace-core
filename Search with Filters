@@ -1,0 +1,15 @@
+import 'package:flutter_marketplace_core/features/search/search_bloc.dart';
+import 'package:flutter_marketplace_core/features/search/advanced_filters.dart';
+
+// Initialize search
+final searchBloc = SearchBloc();
+searchBloc.add(SearchProducts(
+  query: 'apartment',
+  filters: AdvancedFilters(
+    minPrice: 1000,
+    maxPrice: 5000,
+    category: 'real_estate',
+    location: 'New York',
+    radius: 10, // kilometers
+  ),
+));
