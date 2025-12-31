@@ -1,0 +1,292 @@
+For issues and feature requests, please use the GitHub Issues page.
+
+
+## **lib/features/search/advanced_filters.dart:**
+```dart
+import 'package:equatable/equatable.dart';
+
+class AdvancedFilters extends Equatable {
+  final String? query;
+  final String? category;
+  final String? subCategory;
+  final double? minPrice;
+  final double? maxPrice;
+  final String? location;
+  final double? radius; // in kilometers
+  final List<String>? amenities;
+  final PropertyType? propertyType;
+  final VehicleType? vehicleType;
+  final Condition? condition;
+  final YearRange? yearRange;
+  final SortBy? sortBy;
+  final bool? isFeatured;
+  final bool? isVerified;
+  final DateTime? postedAfter;
+  final int? page;
+  final int? limit;
+  
+  const AdvancedFilters({
+    this.query,
+    this.category,
+    this.subCategory,
+    this.minPrice,
+    this.maxPrice,
+    this.location,
+    this.radius,
+    this.amenities,
+    this.propertyType,
+    this.vehicleType,
+    this.condition,
+    this.yearRange,
+    this.sortBy,
+    this.isFeatured,
+    this.isVerified,
+    this.postedAfter,
+    this.page = 1,
+    this.limit = 20,
+  });
+  
+  AdvancedFilters copyWith({
+    String? query,
+    String? category,
+    String? subCategory,
+    double? minPrice,
+    double? maxPrice,
+    String? location,
+    double? radius,
+    List<String>? amenities,
+    PropertyType? propertyType,
+    VehicleType? vehicleType,
+    Condition? condition,
+    YearRange? yearRange,
+    SortBy? sortBy,
+    bool? isFeatured,
+    bool? isVerified,
+    DateTime? postedAfter,
+    int? page,
+    int? limit,
+  }) {
+    return AdvancedFilters(
+      query: query ?? this.query,
+      category: category ?? this.category,
+      subCategory: subCategory ?? this.subCategory,
+      minPrice: minPrice ?? this.minPrice,
+      maxPrice: maxPrice ?? this.maxPrice,
+      location: location ?? this.location,
+      radius: radius ?? this.radius,
+      amenities: amenities ?? this.amenities,
+      propertyType: propertyType ?? this.propertyType,
+      vehicleType: vehicleType ?? this.vehicleType,
+      condition: condition ?? this.condition,
+      yearRange: yearRange ?? this.yearRange,
+      sortBy: sortBy ?? this.sortBy,
+      isFeatured: isFeatured ?? this.isFeatured,
+      isVerified: isVerified ?? this.isVerified,
+      postedAfter: postedAfter ?? this.postedAfter,
+      page: page ?? this.page,
+      limit: limit ?? this.limit,
+    );
+  }
+  
+  Map<String, dynamic> toJson() {
+    return {
+      if (query != null) 'query': query,
+      if (category != null) 'category': category,
+      if (subCategory != null) 'sub_category': subCategory,
+      if (minPrice != null) 'min_price': minPrice,
+      if (maxPrice != null) 'max_price': maxPrice,
+      if (location != null) 'location': location,
+      if (radius != null) 'radius': radius,
+      if (amenities != null && amenities!.isNotEmpty) 
+        'amenities': amenities,
+      if (propertyType != null) 'property_type': propertyType!.value,
+      if (vehicleType != null) 'vehicle_type': vehicleType!.value,
+      if (condition != null) 'condition': condition!.value,
+      if (yearRange != null) 'year_range': yearRange!.toJson(),
+      if (sortBy != null) 'sort_by': sortBy!.value,
+      if (isFeatured != null) 'is_featured': isFeatured,
+      if (isVerified != null) 'is_verified': isVerified,
+      if (postedAfter != null) 'posted_after': postedAfter!.toIso8601String(),
+      'page': page,
+      'limit': limit,
+    };
+  }
+  
+  factory AdvancedFilters.fromJson(Map<String, dynamic> json) {
+    return AdvancedFilters(
+      query: json['query'],
+      category: json['category'],
+      subCategory: json['sub_category'],
+      minPrice: json['min_price']?.toDouble(),
+      maxPrice: json['max_price']?.toDouble(),
+      location: json['location'],
+      radius: json['radius']?.toDouble(),
+      amenities: json['amenities'] != null 
+          ? List<String>.from(json['amenities'])
+          : null,
+      propertyType: json['property_type'] != null
+          ? PropertyType.values.firstWhere(
+              (e) => e.value == json['property_type'],
+              orElse: () => PropertyType.any,
+            )
+          : null,
+      vehicleType: json['vehicle_type'] != null
+          ? VehicleType.values.firstWhere(
+              (e) => e.value == json['vehicle_type'],
+              orElse: () => VehicleType.any,
+            )
+          : null,
+      condition: json['condition'] != null
+          ? Condition.values.firstWhere(
+              (e) => e.value == json['condition'],
+              orElse: () => Condition.any,
+            )
+          : null,
+      yearRange: json['year_range'] != null
+          ? YearRange.fromJson(json['year_range'])
+          : null,
+      sortBy: json['sort_by'] != null
+          ? SortBy.values.firstWhere(
+              (e) => e.value == json['sort_by'],
+              orElse: () => SortBy.relevance,
+            )
+          : null,
+      isFeatured: json['is_featured'],
+      isVerified: json['is_verified'],
+      postedAfter: json['posted_after'] != null
+          ? DateTime.parse(json['posted_after'])
+          : null,
+      page: json['page'] ?? 1,
+      limit: json['limit'] ?? 20,
+    );
+  }
+  
+  bool get hasFilters {
+    return query != null ||
+        category != null ||
+        minPrice != null ||
+        maxPrice != null ||
+        location != null ||
+        radius != null ||
+        (amenities != null && amenities!.isNotEmpty) ||
+        propertyType != null ||
+        vehicleType != null ||
+        condition != null ||
+        yearRange != null ||
+        isFeatured != null ||
+        isVerified != null ||
+        postedAfter != null;
+  }
+  
+  @override
+  List<Object?> get props => [
+    query,
+    category,
+    subCategory,
+    minPrice,
+    maxPrice,
+    location,
+    radius,
+    amenities,
+    propertyType,
+    vehicleType,
+    condition,
+    yearRange,
+    sortBy,
+    isFeatured,
+    isVerified,
+    postedAfter,
+    page,
+    limit,
+  ];
+}
+
+enum PropertyType {
+  any('any'),
+  apartment('apartment'),
+  house('house'),
+  villa('villa'),
+  land('land'),
+  commercial('commercial'),
+  office('office'),
+  shop('shop');
+  
+  final String value;
+  const PropertyType(this.value);
+}
+
+enum VehicleType {
+  any('any'),
+  car('car'),
+  motorcycle('motorcycle'),
+  truck('truck'),
+  bus('bus'),
+  bicycle('bicycle'),
+  boat('boat');
+  
+  final String value;
+  const VehicleType(this.value);
+}
+
+enum Condition {
+  any('any'),
+  newCondition('new'),
+  used('used'),
+  refurbished('refurbished');
+  
+  final String value;
+  const Condition(this.value);
+}
+
+class YearRange extends Equatable {
+  final int? start;
+  final int? end;
+  
+  const YearRange({this.start, this.end});
+  
+  Map<String, dynamic> toJson() {
+    return {
+      if (start != null) 'start': start,
+      if (end != null) 'end': end,
+    };
+  }
+  
+  factory YearRange.fromJson(Map<String, dynamic> json) {
+    return YearRange(
+      start: json['start'],
+      end: json['end'],
+    );
+  }
+  
+  @override
+  List<Object?> get props => [start, end];
+}
+
+enum SortBy {
+  relevance('relevance'),
+  priceLowToHigh('price_low_to_high'),
+  priceHighToLow('price_high_to_low'),
+  newest('newest'),
+  oldest('oldest'),
+  mostViewed('most_viewed');
+  
+  final String value;
+  const SortBy(this.value);
+  
+  String get displayName {
+    switch (this) {
+      case SortBy.relevance:
+        return 'Relevance';
+      case SortBy.priceLowToHigh:
+        return 'Price: Low to High';
+      case SortBy.priceHighToLow:
+        return 'Price: High to Low';
+      case SortBy.newest:
+        return 'Newest';
+      case SortBy.oldest:
+        return 'Oldest';
+      case SortBy.mostViewed:
+        return 'Most Viewed';
+    }
+  }
+}
