@@ -1,0 +1,11 @@
+import 'package:flutter_marketplace_core/features/admin_sync/admin_panel_sync.dart';
+
+// Sync with admin panel
+await AdminPanelSync.syncProducts();
+await AdminPanelSync.syncOrders();
+await AdminPanelSync.syncUsers();
+
+// Real-time updates
+AdminPanelSync.listenToUpdates((update) {
+  print('New update: $update');
+});
